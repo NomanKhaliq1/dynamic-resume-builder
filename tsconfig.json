@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "target": "es2015",         // Use ES6+ features like Array.from
+    "lib": ["es2015", "dom"],   // Include modern JavaScript and DOM APIs
+    "strict": true,             // Enable strict type checking
+    "module": "commonjs",       // Use CommonJS module system
+    "outDir": "./dist"          // Output folder for compiled JS
+  },
+  "include": ["**/*.ts"]        // Include all TypeScript files
+}

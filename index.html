@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="form-container">
+        <h1>Build Your Resume</h1>
+        <form id="resume-form">
+            <!-- Personal Information -->
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" required>
+
+            <label for="title">Title:</label>
+            <input type="text" id="title" required>
+
+            <label for="contact">Contact:</label>
+            <input type="text" id="contact" required>
+
+            <!-- Objective -->
+            <label for="objective">Objective:</label>
+            <textarea id="objective" required></textarea>
+
+            <!-- Experience -->
+            <h2>Experience</h2>
+            <div id="experience-container">
+                <div class="experience-item">
+                    <label>Role:</label>
+                    <input type="text" class="experience-role" required>
+                
+                    <label>Start Date:</label>
+                    <input type="date" class="experience-start" required>
+                
+                    <label>End Date:</label>
+                    <input type="date" class="experience-end">
+                
+                    <label>Add Bullet Point:</label>
+                    <input type="text" class="experience-detail-input" placeholder="Add detail">
+                    <button type="button" class="add-experience-bullet">Add</button>
+                    <ul class="experience-details"></ul>
+                </div>                              
+            </div>
+            <button type="button" id="add-experience">Add Another Experience</button>
+
+
+            <!-- Education -->
+            <h2>Education</h2>
+            <div id="education-container">
+                <div class="education-item">
+                    <label>Degree:</label>
+                    <input type="text" class="education-degree" required>
+                
+                    <label>Institute:</label>
+                    <input type="text" class="education-institute" required>
+                
+                    <label>Start Year:</label>
+                    <input type="date" class="education-start" required>
+                
+                    <label>End Year:</label>
+                    <input type="date" class="education-end">
+                
+                    <label>Add Bullet Point:</label>
+                    <input type="text" class="education-detail-input" placeholder="Add detail">
+                    <button type="button" class="add-education-bullet">Add</button>
+                    <ul class="education-details"></ul>
+                </div>                
+                
+            </div>
+            <button type="button" id="add-education">Add Another Education</button>
+
+            <!-- Skills Section -->
+            <h2>Skills</h2>
+            <div id="skills-container">
+                <div class="skills-item">
+                    <label>Skill:</label>
+                    <input type="text" class="skill-input" placeholder="Enter skill" required>
+                </div>
+            </div>
+            <button type="button" id="add-skill">Add Another Skill</button>
+
+            <!-- Submit -->
+            <button type="submit">Generate Resume</button>
+        </form>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>

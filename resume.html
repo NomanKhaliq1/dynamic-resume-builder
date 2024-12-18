@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generated Resume</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <div id="resume" class="resume-wrapper">
+        <header class="resume-header">
+            <h1 id="name" class="resume-name"></h1>
+            <h2 id="title" class="resume-title"></h2>
+            <p id="contact" class="resume-contact"></p>
+        </header>
+
+        <!-- Objective -->
+        <section class="resume-section">
+            <h3 class="section-title">Objective</h3>
+            <p id="objective"></p>
+        </section>
+
+        <!-- Experience -->
+        <section class="resume-section">
+            <h3 class="section-title">Experience</h3>
+            <div id="experience-list"></div>
+        </section>
+
+        <!-- Education -->
+        <section class="resume-section">
+            <h3 class="section-title">Education</h3>
+            <div id="education-list"></div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="resume-section">
+            <h3 class="section-title">Skills & Abilities</h3>
+            <ul id="skills-list" class="resume-skills list-inside"></ul>
+        </section>
+    </div>
+    <div class="download-container">
+        <button id="download-btn" class="download-button">Download as PDF</button>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
