@@ -7,17 +7,9 @@ function formatDate(dateStr) {
     return date.toLocaleDateString("en-US", options);
 }
 document.addEventListener("DOMContentLoaded", function () {
-    var _a, _b;
+    var _a, _b, _c, _d;
     var form = document.getElementById("resume-form");
-    // Add dynamic skill fields
-    (_a = document.getElementById("add-skill")) === null || _a === void 0 ? void 0 : _a.addEventListener("click", function () {
-        var container = document.getElementById("skills-container");
-        var skillItem = document.createElement("div");
-        skillItem.classList.add("skills-item");
-        skillItem.innerHTML = "\n            <label>Skill:</label>\n            <input type=\"text\" class=\"skill-input\" placeholder=\"Enter skill\" required>\n        ";
-        container.appendChild(skillItem);
-    });
-    // Add and remove bullet points
+    // Add and remove dynamic bullets (experience, education, and skills)
     function addBulletEvent(containerClass, bulletInputClass, addButtonClass, listClass) {
         document.addEventListener("click", function (e) {
             var _a;
@@ -31,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     var li = document.createElement("li");
                     li.innerHTML = "".concat(input.value.trim(), " <button type=\"button\" class=\"remove-bullet\">X</button>");
                     ul.appendChild(li);
-                    input.value = ""; // Clear input
+                    input.value = "";
                 }
             }
             // Remove Bullet Point
@@ -42,6 +34,39 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     addBulletEvent("experience-item", "experience-detail-input", "add-experience-bullet", "experience-details");
     addBulletEvent("education-item", "education-detail-input", "add-education-bullet", "education-details");
+    addBulletEvent("skills-item", "skill-input", "add-skill-bullet", "skills-list");
+    // Add new Experience Section
+    (_a = document.getElementById("add-experience")) === null || _a === void 0 ? void 0 : _a.addEventListener("click", function () {
+        var container = document.getElementById("experience-container");
+        var experienceItem = document.createElement("div");
+        experienceItem.classList.add("experience-item");
+        experienceItem.innerHTML = "\n            <label>Role:</label>\n            <input type=\"text\" class=\"experience-role\" required>\n            <label>Start Date:</label>\n            <input type=\"date\" class=\"experience-start\" required>\n            <label>End Date:</label>\n            <input type=\"date\" class=\"experience-end\">\n            <label>Add Bullet Point:</label>\n            <input type=\"text\" class=\"experience-detail-input\" placeholder=\"Add detail\">\n            <button type=\"button\" class=\"add-experience-bullet\">Add</button>\n            <ul class=\"experience-details\"></ul>\n            <button type=\"button\" class=\"remove-section\">Remove Experience</button>\n        ";
+        container.appendChild(experienceItem);
+    });
+    // Add new Education Section
+    (_b = document.getElementById("add-education")) === null || _b === void 0 ? void 0 : _b.addEventListener("click", function () {
+        var container = document.getElementById("education-container");
+        var educationItem = document.createElement("div");
+        educationItem.classList.add("education-item");
+        educationItem.innerHTML = "\n            <label>Degree:</label>\n            <input type=\"text\" class=\"education-degree\" required>\n            <label>Institute:</label>\n            <input type=\"text\" class=\"education-institute\" required>\n            <label>Start Year:</label>\n            <input type=\"date\" class=\"education-start\" required>\n            <label>End Year:</label>\n            <input type=\"date\" class=\"education-end\">\n            <label>Add Bullet Point:</label>\n            <input type=\"text\" class=\"education-detail-input\" placeholder=\"Add detail\">\n            <button type=\"button\" class=\"add-education-bullet\">Add</button>\n            <ul class=\"education-details\"></ul>\n            <button type=\"button\" class=\"remove-section\">Remove Education</button>\n        ";
+        container.appendChild(educationItem);
+    });
+    // Add new Skill Section
+    (_c = document.getElementById("add-skill")) === null || _c === void 0 ? void 0 : _c.addEventListener("click", function () {
+        var container = document.getElementById("skills-container");
+        var skillItem = document.createElement("div");
+        skillItem.classList.add("skills-item");
+        skillItem.innerHTML = "\n            <label>Skills Set:</label>\n            <input type=\"text\" class=\"skill-input\" placeholder=\"Enter skills set\" required>\n            <button type=\"button\" class=\"add-skill-bullet\">Add</button>\n            <ul class=\"skills-list\"></ul>\n        ";
+        container.appendChild(skillItem);
+    });
+    // Remove Section Event
+    document.addEventListener("click", function (e) {
+        var _a;
+        var target = e.target;
+        if (target.classList.contains("remove-section")) {
+            (_a = target.closest(".experience-item, .education-item, .skills-item")) === null || _a === void 0 ? void 0 : _a.remove();
+        }
+    });
     // Save form data to localStorage
     form === null || form === void 0 ? void 0 : form.addEventListener("submit", function (e) {
         e.preventDefault();
@@ -75,8 +100,9 @@ document.addEventListener("DOMContentLoaded", function () {
             education.push({ degree: degree, institute: institute, start: start, end: end, details: details });
         });
         var skills = [];
-        document.querySelectorAll(".skill-input").forEach(function (skillInput) {
-            skills.push(skillInput.value.trim());
+        document.querySelectorAll(".skills-list li").forEach(function (li) {
+            var _a;
+            skills.push(((_a = li.textContent) === null || _a === void 0 ? void 0 : _a.replace("X", "").trim()) || "");
         });
         var resumeData = { name: name, title: title, contact: contact, objective: objective, experiences: experiences, education: education, skills: skills };
         localStorage.setItem("resumeData", JSON.stringify(resumeData));
@@ -114,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
     // PDF Generation
-    (_b = document.getElementById("download-btn")) === null || _b === void 0 ? void 0 : _b.addEventListener("click", function () {
+    (_d = document.getElementById("download-btn")) === null || _d === void 0 ? void 0 : _d.addEventListener("click", function () {
         var resume = document.getElementById("resume");
         var opt = {
             margin: 0, // Uniform margins
