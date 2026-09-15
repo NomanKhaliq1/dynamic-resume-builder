@@ -1,0 +1,16 @@
+{
+  "title": "Dynamic Resume Builder (first version)",
+  "description": "Original resume builder in plain TypeScript and HTML, before the Next.js rewrite. Superseded by dynamic-resume-builder-editable.",
+  "techTags": [
+    "TypeScript",
+    "HTML",
+    "CSS"
+  ],
+  "source": "github",
+  "category": "Web",
+  "live_url": "",
+  "repo_name": "dynamic-resume-builder",
+  "repo_link": true,
+  "image": "",
+  "fetch": false
+}
